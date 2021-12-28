@@ -1,0 +1,22 @@
+USE [ESP_GearGuard]
+GO
+
+/****** Object:  Table [dbo].[LibraryRooms]    Script Date: 12/28/2021 3:47:25 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[LibraryRooms](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[LibraryId] [int] NOT NULL,
+	[RoomId] [int] NOT NULL,
+ CONSTRAINT [PK_LibraryRooms] PRIMARY KEY CLUSTERED 
+(
+	[LibraryId] ASC,
+	[RoomId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+

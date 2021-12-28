@@ -1,0 +1,824 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ESP_SystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ESP_System.dbo.CompanyInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CompanyInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="Address1" />
+            <PropertyRef Name="Address2" />
+            <PropertyRef Name="Address3" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="State" />
+            <PropertyRef Name="PostalCode" />
+            <PropertyRef Name="Country" />
+            <PropertyRef Name="Phone" />
+            <PropertyRef Name="CallingId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Address1" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Address2" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Address3" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="CallingId" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailSettings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailServer" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Port" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EmailLogin" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="EmailPassword" Type="varchar(max)" Nullable="false" />
+          <Property Name="EmailSecurity" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LicenseData">
+          <Key>
+            <PropertyRef Name="LicenseID" />
+          </Key>
+          <Property Name="LicenseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="License Data" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Expiration Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LicenseType">
+          <Key>
+            <PropertyRef Name="LicenseTypeID" />
+          </Key>
+          <Property Name="LicenseTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LicenseID" Type="int" Nullable="false" />
+          <Property Name="License Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="License Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Permissions">
+          <Key>
+            <PropertyRef Name="PermissionID" />
+          </Key>
+          <Property Name="PermissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Permission Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Policies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PolicyName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PolicyType" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PolicyEstablishedDate" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PolicyEstablishedByUserId" Type="int" Nullable="false" />
+          <Property Name="policyValue" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RolePermissions">
+          <Key>
+            <PropertyRef Name="RolePermissionId" />
+          </Key>
+          <Property Name="RolePermissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role ID" Type="int" Nullable="false" />
+          <Property Name="Permission ID" Type="int" Nullable="false" />
+          <Property Name="Granted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Role Description" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPasswords">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
+          <Property Name="ExpirationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRoleMembership">
+          <Key>
+            <PropertyRef Name="MembershipID" />
+          </Key>
+          <Property Name="MembershipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="First Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Last Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="125" Nullable="false" />
+          <Property Name="Department" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="License" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ESP_System.dbo.GGVW_RolePermissionList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GGVW_RolePermissionList">
+          <Key>
+            <PropertyRef Name="Role ID" />
+            <PropertyRef Name="Role Name" />
+            <PropertyRef Name="Role Description" />
+            <PropertyRef Name="PermissionID" />
+            <PropertyRef Name="Permission Name" />
+            <PropertyRef Name="Granted" />
+          </Key>
+          <Property Name="Role ID" Type="int" Nullable="false" />
+          <Property Name="Role Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Role Description" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="PermissionID" Type="int" Nullable="false" />
+          <Property Name="Permission Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Granted" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ESP_System.dbo.GGVW_UserAssignedRoles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GGVW_UserAssignedRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="First Name" />
+            <PropertyRef Name="Last Name" />
+            <PropertyRef Name="Role Name" />
+            <PropertyRef Name="Role Description" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="First Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Last Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Role Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Role Description" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ESP_System.dbo.GGVW_UserPasswordList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GGVW_UserPasswordList">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="First Name" />
+            <PropertyRef Name="Last Name" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="SetDate" />
+            <PropertyRef Name="ExpirationDate" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="First Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Last Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
+          <Property Name="ExpirationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Function Name="ESPSP_AddPermissionToRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleName" Type="varchar" Mode="In" />
+          <Parameter Name="PermissionName" Type="varchar" Mode="In" />
+          <Parameter Name="Granted" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ESPSP_AddUpdateEmailSetting" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailType" Type="varchar" Mode="In" />
+          <Parameter Name="EmailServer" Type="varchar" Mode="In" />
+          <Parameter Name="Port" Type="varchar" Mode="In" />
+          <Parameter Name="EmailLogin" Type="varchar" Mode="In" />
+          <Parameter Name="EmailPassword" Type="varchar(max)" Mode="In" />
+          <Parameter Name="EmailSecurity" Type="varchar" Mode="In" />
+          <Parameter Name="Enabled" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="ESPSP_AddUpdateRegisteredCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyId" Type="varchar" Mode="In" />
+          <Parameter Name="CompanyName" Type="varchar" Mode="In" />
+          <Parameter Name="Address1" Type="varchar" Mode="In" />
+          <Parameter Name="Address2" Type="varchar" Mode="In" />
+          <Parameter Name="Address3" Type="varchar" Mode="In" />
+          <Parameter Name="City" Type="varchar" Mode="In" />
+          <Parameter Name="State" Type="varchar" Mode="In" />
+          <Parameter Name="PostalCode" Type="varchar" Mode="In" />
+          <Parameter Name="Country" Type="varchar" Mode="In" />
+          <Parameter Name="Phone" Type="varchar" Mode="In" />
+          <Parameter Name="CallingId" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="ESPSP_AddUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="LastName" Type="varchar" Mode="In" />
+          <Parameter Name="Title" Type="varchar" Mode="In" />
+          <Parameter Name="Department" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Phone" Type="varchar" Mode="In" />
+          <Parameter Name="Active" Type="varchar" Mode="In" />
+          <Parameter Name="License" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="ESPSP_AddUserToRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="RoleName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ESPSP_DeleteEmailSetting" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailType" Type="varchar" Mode="In" />
+          <Parameter Name="EmailServer" Type="varchar" Mode="In" />
+          <Parameter Name="Port" Type="varchar" Mode="In" />
+          <Parameter Name="EmailLogin" Type="varchar" Mode="In" />
+          <Parameter Name="EmailPassword" Type="varchar(max)" Mode="In" />
+          <Parameter Name="EmailSecurity" Type="varchar" Mode="In" />
+          <Parameter Name="Enabled" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ESPSP_RemovePermissionFromRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleName" Type="varchar" Mode="In" />
+          <Parameter Name="PermissionName" Type="varchar" Mode="In" />
+          <Parameter Name="Granted" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ESPSP_RemoveUserFromRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="RoleName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ESPSP_UpdateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="LastName" Type="varchar" Mode="In" />
+          <Parameter Name="Title" Type="varchar" Mode="In" />
+          <Parameter Name="Department" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Phone" Type="varchar" Mode="In" />
+          <Parameter Name="Active" Type="varchar" Mode="In" />
+          <Parameter Name="License" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="UserId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GGFN_CheckRolePermissionMemebership" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="RoleId" Type="int" Mode="In" />
+          <Parameter Name="PermissionId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GGFN_CheckUserRoleMembership" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="RoleId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GGFN_GetPasswordExipirationPolicy" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="GGFN_HasUserDataChanged" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="FieldName" Type="varchar" Mode="In" />
+          <Parameter Name="FieldValue" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GGFN_IsUsernameUnique" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GGFN_ValidateCompanyExists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="CompanyId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GGFN_ValidateEmailConfiguration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="EmailType" Type="varchar" Mode="In" />
+          <Parameter Name="EmailLogin" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ESP_SystemModelStoreContainer">
+          <EntitySet Name="EmailSettings" EntityType="Self.EmailSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LicenseData" EntityType="Self.LicenseData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LicenseType" EntityType="Self.LicenseType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permissions" EntityType="Self.Permissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Policies" EntityType="Self.Policies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolePermissions" EntityType="Self.RolePermissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPasswords" EntityType="Self.UserPasswords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRoleMembership" EntityType="Self.UserRoleMembership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyInfo" EntityType="Self.CompanyInfo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[CompanyInfo].[Id] AS [Id], 
+[CompanyInfo].[CompanyId] AS [CompanyId], 
+[CompanyInfo].[CompanyName] AS [CompanyName], 
+[CompanyInfo].[Address1] AS [Address1], 
+[CompanyInfo].[Address2] AS [Address2], 
+[CompanyInfo].[Address3] AS [Address3], 
+[CompanyInfo].[City] AS [City], 
+[CompanyInfo].[State] AS [State], 
+[CompanyInfo].[PostalCode] AS [PostalCode], 
+[CompanyInfo].[Country] AS [Country], 
+[CompanyInfo].[Phone] AS [Phone], 
+[CompanyInfo].[CallingId] AS [CallingId]
+FROM [dbo].[CompanyInfo] AS [CompanyInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GGVW_RolePermissionList" EntityType="Self.GGVW_RolePermissionList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[GGVW_RolePermissionList].[Role ID] AS [Role ID], 
+[GGVW_RolePermissionList].[Role Name] AS [Role Name], 
+[GGVW_RolePermissionList].[Role Description] AS [Role Description], 
+[GGVW_RolePermissionList].[PermissionID] AS [PermissionID], 
+[GGVW_RolePermissionList].[Permission Name] AS [Permission Name], 
+[GGVW_RolePermissionList].[Granted] AS [Granted]
+FROM [dbo].[GGVW_RolePermissionList] AS [GGVW_RolePermissionList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GGVW_UserAssignedRoles" EntityType="Self.GGVW_UserAssignedRoles" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[GGVW_UserAssignedRoles].[UserId] AS [UserId], 
+[GGVW_UserAssignedRoles].[Username] AS [Username], 
+[GGVW_UserAssignedRoles].[First Name] AS [First Name], 
+[GGVW_UserAssignedRoles].[Last Name] AS [Last Name], 
+[GGVW_UserAssignedRoles].[Role Name] AS [Role Name], 
+[GGVW_UserAssignedRoles].[Role Description] AS [Role Description]
+FROM [dbo].[GGVW_UserAssignedRoles] AS [GGVW_UserAssignedRoles]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GGVW_UserPasswordList" EntityType="Self.GGVW_UserPasswordList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[GGVW_UserPasswordList].[UserId] AS [UserId], 
+[GGVW_UserPasswordList].[Username] AS [Username], 
+[GGVW_UserPasswordList].[First Name] AS [First Name], 
+[GGVW_UserPasswordList].[Last Name] AS [Last Name], 
+[GGVW_UserPasswordList].[Password] AS [Password], 
+[GGVW_UserPasswordList].[SetDate] AS [SetDate], 
+[GGVW_UserPasswordList].[ExpirationDate] AS [ExpirationDate]
+FROM [dbo].[GGVW_UserPasswordList] AS [GGVW_UserPasswordList]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ESP_SystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EmailSetting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailServer" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Port" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailLogin" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailSecurity" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LicenseData">
+          <Key>
+            <PropertyRef Name="LicenseID" />
+          </Key>
+          <Property Name="LicenseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="License_Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Expiration_Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="LicenseType">
+          <Key>
+            <PropertyRef Name="LicenseTypeID" />
+          </Key>
+          <Property Name="LicenseTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LicenseID" Type="Int32" Nullable="false" />
+          <Property Name="License_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="License_Count" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="PermissionID" />
+          </Key>
+          <Property Name="PermissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Permission_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Policy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PolicyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PolicyType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PolicyEstablishedDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PolicyEstablishedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="policyValue" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RolePermission">
+          <Key>
+            <PropertyRef Name="RolePermissionId" />
+          </Key>
+          <Property Name="RolePermissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role_ID" Type="Int32" Nullable="false" />
+          <Property Name="Permission_ID" Type="Int32" Nullable="false" />
+          <Property Name="Granted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPassword">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserRoleMembership">
+          <Key>
+            <PropertyRef Name="MembershipID" />
+          </Key>
+          <Property Name="MembershipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="First_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="125" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="License" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompanyInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="Address1" />
+            <PropertyRef Name="Address2" />
+            <PropertyRef Name="Address3" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="State" />
+            <PropertyRef Name="PostalCode" />
+            <PropertyRef Name="Country" />
+            <PropertyRef Name="Phone" />
+            <PropertyRef Name="CallingId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address3" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CallingId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GGVW_RolePermissionList">
+          <Key>
+            <PropertyRef Name="Role_ID" />
+            <PropertyRef Name="Role_Name" />
+            <PropertyRef Name="Role_Description" />
+            <PropertyRef Name="PermissionID" />
+            <PropertyRef Name="Permission_Name" />
+            <PropertyRef Name="Granted" />
+          </Key>
+          <Property Name="Role_ID" Type="Int32" Nullable="false" />
+          <Property Name="Role_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PermissionID" Type="Int32" Nullable="false" />
+          <Property Name="Permission_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Granted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GGVW_UserAssignedRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="First_Name" />
+            <PropertyRef Name="Last_Name" />
+            <PropertyRef Name="Role_Name" />
+            <PropertyRef Name="Role_Description" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="First_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GGVW_UserPasswordList">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="First_Name" />
+            <PropertyRef Name="Last_Name" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="SetDate" />
+            <PropertyRef Name="ExpirationDate" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="First_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="ESP_SystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EmailSettings" EntityType="Self.EmailSetting" />
+          <EntitySet Name="LicenseDatas" EntityType="Self.LicenseData" />
+          <EntitySet Name="LicenseTypes" EntityType="Self.LicenseType" />
+          <EntitySet Name="Permissions" EntityType="Self.Permission" />
+          <EntitySet Name="Policies" EntityType="Self.Policy" />
+          <EntitySet Name="RolePermissions" EntityType="Self.RolePermission" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="UserPasswords" EntityType="Self.UserPassword" />
+          <EntitySet Name="UserRoleMemberships" EntityType="Self.UserRoleMembership" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="CompanyInfoes" EntityType="Self.CompanyInfo" />
+          <EntitySet Name="GGVW_RolePermissionList" EntityType="Self.GGVW_RolePermissionList" />
+          <EntitySet Name="GGVW_UserAssignedRoles" EntityType="Self.GGVW_UserAssignedRoles" />
+          <EntitySet Name="GGVW_UserPasswordList" EntityType="Self.GGVW_UserPasswordList" />
+          <FunctionImport Name="ESPSP_AddPermissionToRole">
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+            <Parameter Name="PermissionName" Mode="In" Type="String" />
+            <Parameter Name="Granted" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ESPSP_AddUpdateEmailSetting">
+            <Parameter Name="EmailType" Mode="In" Type="String" />
+            <Parameter Name="EmailServer" Mode="In" Type="String" />
+            <Parameter Name="Port" Mode="In" Type="String" />
+            <Parameter Name="EmailLogin" Mode="In" Type="String" />
+            <Parameter Name="EmailPassword" Mode="In" Type="String" />
+            <Parameter Name="EmailSecurity" Mode="In" Type="String" />
+            <Parameter Name="Enabled" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ESPSP_AddUpdateRegisteredCompany">
+            <Parameter Name="CompanyId" Mode="In" Type="String" />
+            <Parameter Name="CompanyName" Mode="In" Type="String" />
+            <Parameter Name="Address1" Mode="In" Type="String" />
+            <Parameter Name="Address2" Mode="In" Type="String" />
+            <Parameter Name="Address3" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="PostalCode" Mode="In" Type="String" />
+            <Parameter Name="Country" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="CallingId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ESPSP_AddUser">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Department" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Active" Mode="In" Type="String" />
+            <Parameter Name="License" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ESPSP_AddUserToRole">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ESPSP_DeleteEmailSetting">
+            <Parameter Name="EmailType" Mode="In" Type="String" />
+            <Parameter Name="EmailServer" Mode="In" Type="String" />
+            <Parameter Name="Port" Mode="In" Type="String" />
+            <Parameter Name="EmailLogin" Mode="In" Type="String" />
+            <Parameter Name="EmailPassword" Mode="In" Type="String" />
+            <Parameter Name="EmailSecurity" Mode="In" Type="String" />
+            <Parameter Name="Enabled" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ESPSP_RemovePermissionFromRole">
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+            <Parameter Name="PermissionName" Mode="In" Type="String" />
+            <Parameter Name="Granted" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ESPSP_RemoveUserFromRole">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ESPSP_UpdateUser">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Department" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Active" Mode="In" Type="String" />
+            <Parameter Name="License" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ESP_SystemModelStoreContainer" CdmEntityContainer="ESP_SystemEntities">
+          <EntitySetMapping Name="EmailSettings">
+            <EntityTypeMapping TypeName="ESP_SystemModel.EmailSetting">
+              <MappingFragment StoreEntitySet="EmailSettings">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmailType" ColumnName="EmailType" />
+                <ScalarProperty Name="EmailServer" ColumnName="EmailServer" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="EmailLogin" ColumnName="EmailLogin" />
+                <ScalarProperty Name="EmailPassword" ColumnName="EmailPassword" />
+                <ScalarProperty Name="EmailSecurity" ColumnName="EmailSecurity" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LicenseDatas">
+            <EntityTypeMapping TypeName="ESP_SystemModel.LicenseData">
+              <MappingFragment StoreEntitySet="LicenseData">
+                <ScalarProperty Name="LicenseID" ColumnName="LicenseID" />
+                <ScalarProperty Name="License_Data" ColumnName="License Data" />
+                <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LicenseTypes">
+            <EntityTypeMapping TypeName="ESP_SystemModel.LicenseType">
+              <MappingFragment StoreEntitySet="LicenseType">
+                <ScalarProperty Name="LicenseTypeID" ColumnName="LicenseTypeID" />
+                <ScalarProperty Name="LicenseID" ColumnName="LicenseID" />
+                <ScalarProperty Name="License_Name" ColumnName="License Name" />
+                <ScalarProperty Name="License_Count" ColumnName="License Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permissions">
+            <EntityTypeMapping TypeName="ESP_SystemModel.Permission">
+              <MappingFragment StoreEntitySet="Permissions">
+                <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />
+                <ScalarProperty Name="Permission_Name" ColumnName="Permission Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Policies">
+            <EntityTypeMapping TypeName="ESP_SystemModel.Policy">
+              <MappingFragment StoreEntitySet="Policies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PolicyName" ColumnName="PolicyName" />
+                <ScalarProperty Name="PolicyType" ColumnName="PolicyType" />
+                <ScalarProperty Name="PolicyEstablishedDate" ColumnName="PolicyEstablishedDate" />
+                <ScalarProperty Name="PolicyEstablishedByUserId" ColumnName="PolicyEstablishedByUserId" />
+                <ScalarProperty Name="policyValue" ColumnName="policyValue" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolePermissions">
+            <EntityTypeMapping TypeName="ESP_SystemModel.RolePermission">
+              <MappingFragment StoreEntitySet="RolePermissions">
+                <ScalarProperty Name="RolePermissionId" ColumnName="RolePermissionId" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role ID" />
+                <ScalarProperty Name="Permission_ID" ColumnName="Permission ID" />
+                <ScalarProperty Name="Granted" ColumnName="Granted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ESP_SystemModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Role_Name" ColumnName="Role Name" />
+                <ScalarProperty Name="Role_Description" ColumnName="Role Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPasswords">
+            <EntityTypeMapping TypeName="ESP_SystemModel.UserPassword">
+              <MappingFragment StoreEntitySet="UserPasswords">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoleMemberships">
+            <EntityTypeMapping TypeName="ESP_SystemModel.UserRoleMembership">
+              <MappingFragment StoreEntitySet="UserRoleMembership">
+                <ScalarProperty Name="MembershipID" ColumnName="MembershipID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ESP_SystemModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="First_Name" ColumnName="First Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="License" ColumnName="License" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyInfoes">
+            <EntityTypeMapping TypeName="ESP_SystemModel.CompanyInfo">
+              <MappingFragment StoreEntitySet="CompanyInfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="CallingId" ColumnName="CallingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GGVW_RolePermissionList">
+            <EntityTypeMapping TypeName="ESP_SystemModel.GGVW_RolePermissionList">
+              <MappingFragment StoreEntitySet="GGVW_RolePermissionList">
+                <ScalarProperty Name="Role_ID" ColumnName="Role ID" />
+                <ScalarProperty Name="Role_Name" ColumnName="Role Name" />
+                <ScalarProperty Name="Role_Description" ColumnName="Role Description" />
+                <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />
+                <ScalarProperty Name="Permission_Name" ColumnName="Permission Name" />
+                <ScalarProperty Name="Granted" ColumnName="Granted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GGVW_UserAssignedRoles">
+            <EntityTypeMapping TypeName="ESP_SystemModel.GGVW_UserAssignedRoles">
+              <MappingFragment StoreEntitySet="GGVW_UserAssignedRoles">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="First_Name" ColumnName="First Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
+                <ScalarProperty Name="Role_Name" ColumnName="Role Name" />
+                <ScalarProperty Name="Role_Description" ColumnName="Role Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GGVW_UserPasswordList">
+            <EntityTypeMapping TypeName="ESP_SystemModel.GGVW_UserPasswordList">
+              <MappingFragment StoreEntitySet="GGVW_UserPasswordList">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="First_Name" ColumnName="First Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ESPSP_AddPermissionToRole" FunctionName="ESP_SystemModel.Store.ESPSP_AddPermissionToRole" />
+          <FunctionImportMapping FunctionImportName="ESPSP_AddUpdateEmailSetting" FunctionName="ESP_SystemModel.Store.ESPSP_AddUpdateEmailSetting" />
+          <FunctionImportMapping FunctionImportName="ESPSP_AddUpdateRegisteredCompany" FunctionName="ESP_SystemModel.Store.ESPSP_AddUpdateRegisteredCompany" />
+          <FunctionImportMapping FunctionImportName="ESPSP_AddUser" FunctionName="ESP_SystemModel.Store.ESPSP_AddUser" />
+          <FunctionImportMapping FunctionImportName="ESPSP_AddUserToRole" FunctionName="ESP_SystemModel.Store.ESPSP_AddUserToRole" />
+          <FunctionImportMapping FunctionImportName="ESPSP_DeleteEmailSetting" FunctionName="ESP_SystemModel.Store.ESPSP_DeleteEmailSetting" />
+          <FunctionImportMapping FunctionImportName="ESPSP_RemovePermissionFromRole" FunctionName="ESP_SystemModel.Store.ESPSP_RemovePermissionFromRole" />
+          <FunctionImportMapping FunctionImportName="ESPSP_RemoveUserFromRole" FunctionName="ESP_SystemModel.Store.ESPSP_RemoveUserFromRole" />
+          <FunctionImportMapping FunctionImportName="ESPSP_UpdateUser" FunctionName="ESP_SystemModel.Store.ESPSP_UpdateUser" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
