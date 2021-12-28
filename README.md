@@ -32,6 +32,7 @@ Planning software written by Event Staff, for Event Staff. Multiple modules will
   h. Define Management Hierarchy
   i. Discepline Actions
   j. Volunteer Satisfaction Survey
+  k. Labor Cost Calculator based on entered Benefit Costs
 5. Registration and Payment Processing
   a. Online Pre-Registration
   b. On-Site Registration
