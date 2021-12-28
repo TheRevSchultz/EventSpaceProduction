@@ -31,6 +31,7 @@ Planning software written by Event Staff, for Event Staff. Multiple modules will
   g. Generate Welcome Email Letter for Each Event
   h. Define Management Hierarchy
   i. Discepline Actions
+  j. Volunteer Satisfaction Survey
 5. Registration and Payment Processing
   a. Online Pre-Registration
   b. On-Site Registration
