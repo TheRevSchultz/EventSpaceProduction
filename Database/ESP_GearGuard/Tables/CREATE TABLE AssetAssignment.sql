@@ -1,7 +1,7 @@
 USE [ESP_GearGuard]
 GO
 
-/****** Object:  Table [dbo].[AssetAssignment]    Script Date: 12/28/2021 3:17:42 PM ******/
+/****** Object:  Table [dbo].[AssetAssignment]    Script Date: 12/29/2021 9:10:28 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -12,6 +12,7 @@ CREATE TABLE [dbo].[AssetAssignment](
 	[AssetAssignmentId] [int] IDENTITY(1,1) NOT NULL,
 	[AssetId] [int] NOT NULL,
 	[AssetGroupId] [int] NOT NULL,
+	[EventId] [int] NOT NULL,
 	[RoomId] [int] NOT NULL,
 	[AssignmentTime] [datetime] NOT NULL,
 	[AssigningUserId] [int] NOT NULL,

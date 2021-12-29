@@ -1,7 +1,7 @@
 USE [ESP_Events]
 GO
 
-/****** Object:  Table [dbo].[Events]    Script Date: 12/28/2021 10:28:51 AM ******/
+/****** Object:  Table [dbo].[Events]    Script Date: 12/29/2021 9:02:59 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -14,6 +14,7 @@ CREATE TABLE [dbo].[Events](
 	[Event Description] [varchar](250) NOT NULL,
 	[Event Start Date] [datetime] NOT NULL,
 	[Event End Date] [datetime] NOT NULL,
+	[Closed Out] [bit] NOT NULL,
  CONSTRAINT [PK_Events] PRIMARY KEY CLUSTERED 
 (
 	[EventId] ASC

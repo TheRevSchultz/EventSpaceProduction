@@ -1,7 +1,7 @@
 USE [ESP_GearGuard]
 GO
 
-/****** Object:  Table [dbo].[Assets]    Script Date: 12/28/2021 3:39:23 PM ******/
+/****** Object:  Table [dbo].[Assets]    Script Date: 12/29/2021 8:32:04 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -10,6 +10,7 @@ GO
 
 CREATE TABLE [dbo].[Assets](
 	[AssetID] [int] IDENTITY(1,1) NOT NULL,
+	[Asset Description] [varchar](250) NOT NULL,
 	[Asset Tag] [varchar](100) NOT NULL,
 	[Serial Number] [varchar](200) NOT NULL,
 	[ManufacturerId] [int] NOT NULL,

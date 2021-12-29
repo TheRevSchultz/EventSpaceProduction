@@ -1,7 +1,7 @@
 USE [ESP_GearGuard]
 GO
 
-/****** Object:  Table [dbo].[LibraryCheckout]    Script Date: 12/28/2021 3:45:42 PM ******/
+/****** Object:  Table [dbo].[LibraryCheckout]    Script Date: 12/29/2021 9:11:53 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -12,6 +12,7 @@ CREATE TABLE [dbo].[LibraryCheckout](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[LibraryId] [int] NOT NULL,
 	[AssetId] [int] NOT NULL,
+	[EventId] [int] NOT NULL,
 	[CheckedoutByUserId] [int] NOT NULL,
 	[CheckedOutTime] [datetime] NOT NULL,
 	[CheckedOutTo] [varchar](200) NOT NULL,

@@ -1,7 +1,7 @@
 USE [ESP_GearGuard]
 GO
 
-/****** Object:  Table [dbo].[NSCUtilization]    Script Date: 12/28/2021 3:50:59 PM ******/
+/****** Object:  Table [dbo].[NSCUtilization]    Script Date: 12/29/2021 2:00:23 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -15,6 +15,7 @@ CREATE TABLE [dbo].[NSCUtilization](
 	[QuantityUsed] [int] NOT NULL,
 	[IsNSCConsumed] [bit] NOT NULL,
 	[RoomId] [int] NOT NULL,
+	[EventId] [int] NOT NULL,
 	[UsedTimestamp] [datetime] NOT NULL,
  CONSTRAINT [PK_NSCUtilization] PRIMARY KEY CLUSTERED 
 (
